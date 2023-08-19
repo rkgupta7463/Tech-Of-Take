@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% load static %}
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/showmore.css' %}"> {% block content %}
+
+<div class="title text-center m-5 text-black">
+    <h2 style="text-align: center;" class="m-2" id="trending-blog">Interested Area</h2>
+    <p class="p text-black" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">We are providing this things, which mentions in below! Explore It.
+    </p>
+</div>
+<div class="container d-flex">
+    <div class="tet">
+        <h3>{{Int.title}}</h3>
+        <p>{{Int.descrp | title}}</p>
+    </div>
+    <img src="{{Int.image.url}}" class="contain-img w-25" alt="error">
+</div>
+<div class="container d-flex mt-2">
+    <p><a class="btn btn-secondary" href="{% url 'about-me' %}">Back</a></p>
+    <p><a class="btn btn-secondary mx-4" href="{% url 'Home' %}">View More</a></p>
+</div>
+
+<!-- <div class="container"> -->
+{% endblock %}

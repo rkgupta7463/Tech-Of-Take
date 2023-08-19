@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+<!-- Contact Start -->
+<style>
+    .box1 {
+        width: 600px;
+        display: block;
+        margin: auto;
+        position: relative;
+        margin-top: 10em;
+        color: black;
+    }
+    
+    form {
+        color: #7579ab;
+        font-size: x-large;
+    }
+    
+    @media screen and (max-width:600px) {
+        .box1 {
+            width: 300px;
+            display: block;
+            margin: auto;
+            position: relative;
+            top: 5em;
+            color: black;
+        }
+    }
+</style>
+
+
+<div class="box1 mb-5">
+    <div class="container">
+        <p>Your password has changed ! Now login with this new password</p>
+        <a href="{% url 'signin' %}" class="btn btn-success">login</a>
+    </div>
+</div>
+
+<!--scripting-->
+<script src="{% static 'js/authlogic/forgjs.js' %}"></script>
+<!--end-->
+
+
+<!-- Contact End -->
+{% endblock %}

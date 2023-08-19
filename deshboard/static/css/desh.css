@@ -1,0 +1,12 @@
+body {
+    background-color: grey;
+    color: aliceblue;
+}
+
+.rap img {
+    width: 100px;
+    margin: auto;
+    display: block;
+    border: 5px solid;
+    border-radius: 50%;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/addlrn.css' %}">
+<style>
+    body {
+        background-color: aliceblue;
+    }
+</style>
+<div class="section-title">
+    <h4 class="text-white  text-uppercase text-center" style="letter-spacing: 5px;">Learning/ Course Update</h4>
+</div>
+<form method="post" class="m-4">
+    {% csrf_token %} {{form}}
+    <input type="submit" value="Add" class="btn btn-bd-primary px-3 mt-2">
+    <a href="{% url 'dashboard' %}" class="btn btn-danger px-3 mt-2">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,67 @@
+body {
+    background-color: aliceblue;
+    font-size: large;
+    font-family: math;
+}
+
+.techhub {
+    color: #fff;
+}
+
+.carousel-inner {
+    height: 30em;
+}
+
+.carousel-item img {
+    height: 28rem;
+    background: #777;
+    color: white;
+    position: relative;
+}
+
+.image img {
+    width: 200px;
+}
+
+.col img {
+    width: 65%;
+    display: block;
+    margin: auto;
+}
+
+.row .col:hover {
+    box-shadow: 0 5px 6px 5px cornflowerblue;
+}
+
+.tag-tilte {
+    margin-top: 20px;
+}
+
+.tag-tilte #trend_it {
+    margin-top: 30px;
+}
+
+
+/* .rape {
+    box-shadow: 0 1px 6px 0px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.rape:hover {
+    box-shadow: 0 4px 8px 0px;
+    margin-bottom: 40px;
+} */
+
+@media screen and (max-width:600px) {
+    body {
+        font-size: x-small;
+    }
+    .tag-tilte {
+        margin-top: 10px;
+    }
+    .tag-tilte #trend_it {
+        font-size: large;
+        margin-top: 10px;
+    }
+}

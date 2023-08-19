@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!--custom links-->
+<link rel="stylesheet" href="{% static 'css/update.css' %}">
+<style>
+    body {
+        background-color: aliceblue;
+        color: black;
+    }
+    .section-title{
+        margin-top: 100px;
+    }
+</style>
+<div class="section-title">
+    <h4 class="text-primary  text-uppercase text-center m-2" style="letter-spacing: 5px;">Deshboard/ Update Post</h4>
+</div>
+</div>
+<!--form-->
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {% for b in BlogDB %}
+        <div class="mb-2">
+            {{b.label_tag}}{{b}}
+        </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary m-2" value="Update Now">
+        <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+<div class="container">
+
+</div>
+
+
+</body>
+
+</html>
+
+{% endblock %}

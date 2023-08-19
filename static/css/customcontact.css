@@ -1,0 +1,43 @@
+body {
+    /* background-image: url('/static/image/creambg.jpg'); */
+    /* background-image: url('https://plantsta.files.wordpress.com/2020/07/contact-us.gif'); */
+    background-size: contain;
+    color: black;
+    background-color: grey;
+}
+
+.techhub {
+    color: #fff;
+}
+
+.center {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.form-control {
+    font-size: 23px;
+    font-weight: bolder;
+}
+
+@media screen and (max-width:500px) {
+    body {
+        /* background-image: url('/static/image/creambg.jpg'); */
+        background-image: url('https://cdn.dribbble.com/users/1602563/screenshots/8869646/media/ddc33ce2c8e2570c410123f375e2c35c.gif');
+        /* background-size: contain; */
+        color: orange;
+        color: black;
+        background-position: unset;
+        background-size: cover;
+        background-repeat: round;
+    }
+    .img-thumbnail {
+        padding: 0.25rem;
+        background-color: #fff;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.375rem;
+        max-width: 90%;
+        height: auto;
+    }
+}

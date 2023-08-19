@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+<!-- Contact Start -->
+<style>
+    .box1 {
+        width: 100%;
+        margin-top: 30px;
+        display: block;
+        margin: auto;
+    }
+    
+    form {
+        color: #7579ab;
+        font-size: x-large;
+    }
+    
+    @media screen and (max-width:600px) {
+        .box1 {
+            width: 300px;
+            margin-top: 30px;
+            display: block;
+            margin: auto;
+        }
+    }
+</style>
+
+<div class="box1">
+    <div class="container">
+        <div class="container">
+            <h1 class="display-4 mt-5 text-center">Enter your confirm password!</h1>
+        </div>
+    </div>
+    <div class="container mb-2">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{form}}
+            </div>
+            <input type="submit" class="btn btn-success" value="Reset Password">
+        </form>
+    </div>
+</div>
+<!--scripting-->
+<script src="{% static 'js/authlogic/forgjs.js' %}"></script>
+<!--end-->
+
+
+<!-- Contact End -->
+{% endblock %}

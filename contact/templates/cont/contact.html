@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/customcontact.css' %}">
+<script src="{% static 'js/contact.js' %}"></script>
+<style>
+    body {
+        background-color: aliceblue;
+    }
+    #mainform{
+        margin-top:6%;
+    }
+
+    @media screen and (max-width:600px) {
+        #mainform{
+            margin-top:6%;
+        }
+    }
+</style>
+
+<!-- Contact Start -->
+<div class="container-fluid">
+    <div class="container" id="mainform">
+        <div class="center">
+            {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+            {% endif %}
+            <!-- <h4 class="text-uppercase" style="letter-spacing: 5px;">Contact Us</h4> -->
+            <h1 class="display-4">Feel Free To Contact</h1>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="col-sm-4 text-center mb-3">
+                <i class="fa fa-2x fa-map-marker-alt mb-3 text-primary"></i>
+                <h4 class="font-weight-bold">Address</h4>
+                <p>Vijawada , India</p>
+            </div>
+            <div class="col-sm-4 text-center mb-3">
+                <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
+                <h4 class="font-weight-bold">Phone</h4>
+                <p>+91 7463 XXXX 82 </p>
+            </div>
+            <div class="col-sm-4 text-center mb-3">
+                <i class="far fa-2x fa-envelope mb-3 text-primary"></i>
+                <h4 class="font-weight-bold">Email</h4>
+                <p>rishukumargupta8409@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="row1 shadow-lg p-3 mb-5 rounded-5">
+            <div class="col">
+                <form method="POST">
+                    <!--name="sentMessage" novalidate="novalidate"-->
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <input type="text" class="form-control bg-transparent p-4 fw-bolder fs-5" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" name="name" />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <input type="email" class="form-control bg-transparent p-4 fw-bolder fs-5" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" name="email" />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <textarea class="form-control bg-transparent py-3 px-4 fw-bolder fs-5" rows="5" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message" name="message"></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div>
+                        <input class="btn btn-primary font-weight-bold py-3 px-5 m-2 fw-bolder fs-5" type="submit" name="save" value="Send Message" />
+                        <!-- id="sendMessageButton"-->
+                    </div>
+
+                </form>
+            </div>
+            <div class="col my-2">
+
+                <!--embeed code for google map-->
+                <div style="width: 100%"><iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=nilgiri%20boys%20hostel,%20vaddeshwaram+(My%20Business%20Name)&amp;t=h&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a
+                            href="https://www.maps.ie/distance-area-calculator.html">distance maps</a></iframe></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </div>
+</div> -->
+<!-- Contact End -->
+{% endblock %}

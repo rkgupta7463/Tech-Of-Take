@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!--customed linked-->
+<link rel="stylesheet" href="{% static 'css/testiminal.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+<!-- Testimonial Start -->
+<div class="container" id="main-container">
+    {% csrf_token %} {% if messages %} {% for message in messages %}
+    <div class="alert alert-warning position-relative text-center mt-2" role="alert">
+        {{message}}
+    </div> {% endfor %}{% endif %}
+    <div class="container">
+        <div class="section-title">
+            <h4 class="text-primary text-uppercase text-center m-5 pt-4" style="letter-spacing: 5px;">Testimonial</h4>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="control-group">
+                <input type="text" class="form-control bg-transparent p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" name="username" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="email" class="form-control bg-transparent p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" name="email" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text" class="form-control bg-transparent p-4" id="Phone No." placeholder="Please enter your email phone no." required="required" data-validation-required-message="Please enter a subject" name="phone_no" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text" class="form-control bg-transparent p-4" id="Phone No." placeholder="Please enter Profession" required="required" data-validation-required-message="Please enter a subject" name="profession" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <textarea class="form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message" name="message"></textarea>
+                <p class="help-block text-danger"></p>
+            </div>
+            <div>
+                <input class="btn btn-primary font-weight-bold py-3 px-5 m-2" type="submit" name="save" value="Send Message" />
+                <!-- id="sendMessageButton"-->
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- Testimonial Start -->
+
+<div class="clints_said text-white">
+    <div class="title text-center m-5">
+        <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Testimonial</h3>
+        <p class="p text-white" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">Our Clients Say!
+        </p>
+    </div>
+    <div class="owl-carousel owl-theme">
+        {% for tdb in TDB %}
+        <div class="item">
+            <div class="swiper-slide col">
+                <h2 class="text-center m-3 ">{{tdb.cname}}</h2>
+                <h6 class="text-center m-3">{{tdb.ctitle}}</h6>
+                <p>{{tdb.cfeedback}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/logic(dy).js' %}"></script>
+{% endblock %}

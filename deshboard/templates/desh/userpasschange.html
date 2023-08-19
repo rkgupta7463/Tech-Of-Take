@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/proview.css' %}">
+
+<style>
+    body {
+        background-color: aliceblue;
+    }
+    #mainproview{
+         margin-top: 6%;
+    }
+    @media screen and (max-width:600px) {
+        nav {
+            font-size: x-small;
+        }
+        #mainproview{
+            margin-top: 22%;
+        }
+    }
+</style>
+{% if messages %} {% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-2" role="alert" {% endif %}>
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %}
+<div class="container-xl px-4" id="mainproview">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link {% if request.resolver_match.url_name == 'profileview' %}active {% endif %} ms-0" href="{% url 'profileview' user.id %}">Profile</a>
+        <a class="nav-link ms-0" href="{% url 'dashboard' %}">Dashboard</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'change-password' %}active {% endif %}" href="{% url 'change-password' %}">Change Password</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'notifies' %}active {% endif %} ms-0" href="{% url 'notifies' %}">Notifications</a>
+    </nav>
+    <hr class="mt-0 mb-4 ">
+
+
+    <!--forom-->
+    <div class="container mb-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{form}}
+            </div>
+            <input type="submit" class="btn btn-success" value="Save">
+            <a href="{% url 'profileview' user.id %}" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

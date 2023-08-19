@@ -1,0 +1,53 @@
+body {
+    /* background-image: url('/static/image/creambg.jpg'); */
+    /* background-image: url('https://plantsta.files.wordpress.com/2020/07/contact-us.gif'); */
+    background-size: contain;
+    color: black;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#form-body {
+    width: 700px;
+    /* background-image: url('/static/img/signinbg.jpg'); */
+    position: relative;
+    top: 5em;
+    top: 5em;
+    padding: 25px;
+    box-shadow: 0 10px 15px;
+    border-radius: 50px;
+}
+
+#login_contact {
+    width: 150px;
+    display: block;
+    margin: auto;
+}
+
+.btnopt #click {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.btnopt #click:hover {
+    color: rgb(30, 228, 30);
+}
+
+.btnopt a {
+    text-decoration: none;
+}
+
+.btnopt a span {
+    color: black;
+}
+
+.btnopt a span:hover {
+    color: rgb(30, 228, 30);
+}
+
+@media screen and (max-width:800px) {
+   form{
+       width:85%;
+   }
+}

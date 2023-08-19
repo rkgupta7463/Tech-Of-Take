@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/trend.css' %}">
+
+
+<!--Begin trending section-->
+<div class="tag-tilte">
+    <h2 class="head text-center" style="font-family: auto;">Top 10 Trending Technology</h2>
+    <h2 class="head text-center" id="trend_it"></h2>
+    <form method="get" class="d-flex mt-3 my-5 mx-5" role="search">
+        <input class="form-control me-2" type="search" name="search-trend" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+</div>
+<hr>
+<div class="row w-100 d-block m-auto m-2">
+    {% for c in course %}
+    <div class="rape">
+        <div class="container d-flex">
+            <div class="tet">
+                <div class="d-flex">
+                    <h3 class="mx-2">{{c.id}}. </h3>
+                    <h3>{{c.title}}</h3>
+                </div>
+                <p class="mx-5">{{c.description | truncatechars:550}}
+                </p>
+            </div>
+            {% if c.image != null %}
+            <img src="/{{c.image}}" class="contain-img w-25 h-25" style="height: 25vh;" alt="error"> {% else %}
+            <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" alt="Error"> {% endif %}
+        </div>
+        <div class="container d-flex mt-2">
+            {% if is.authenticated %}
+            <p><a class="btn btn-info" href="{% url 'Home' %}">Back</a></p>
+            <p><a class="btn btn-info mx-4" href="{% url 'trending_IT' %}" target="_blank">View More</a></p>
+            {% else %}
+            <p><a class="btn btn-info" href="{% url 'Home' %}">Back</a></p>
+            <p><a class="btn btn-info mx-4" href="{{ c.weblink }}" target="_blank">View More</a></p>
+            {% endif %}
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+        </div>
+        <hr>
+    </div>
+    {% empty %}
+    <p style="color: red;" class="text-center">No Data Found</p>
+    {% endfor %}
+</div>
+
+<div class="m-4">
+    <nav aria-label="Page navigation example fs-5">
+        <ul class="pagination justify-content-center">
+            {% if course.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/trending/?page={{course.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %} {% for n in totalpagelist %}
+            <li class="page-item"><a class="page-link" href="/trending/?page={{n}}">{{n}}</a></li>
+            {% endfor %} {% if course.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/trending/?page={{course.next_page_number}}">Next</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/trending/?page={{lastpage}}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<!--end trending section-->
+
+{% endblock %}

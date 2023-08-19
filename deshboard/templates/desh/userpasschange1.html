@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/blogstyle/add.css' %}">
+<style>
+    .helptext {
+        display: none;
+    }
+</style>
+<!--title-->
+{% if messages %} {% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-2" role="alert" {% endif %}>
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %}
+<div class="section-title">
+    <h4 class="text-white  text-uppercase" style="letter-spacing: 5px;"><a href="{% url 'dashboard' %}" class="text-white" style="text-decoration: none;">Dashboard</a> / Password Change</h4>
+</div>
+
+<!--forom-->
+<div class="container mb-4">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{form}}
+        </div>
+        <input type="submit" class="btn btn-success" value="Save">
+        <a href="{% url 'profileview' user.id %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,278 @@
+body {
+    color: #060f76;
+    background-color: aliceblue;
+    font-size: large;
+}
+
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url("/static/image/rishukg.jpg");
+    background-size: cover;
+    background-position: initial;
+}
+
+#item-box {
+    width: 100%;
+    box-shadow: 0 1px 7px 0.5px #1a1a77;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+
+/* for interesting area */
+
+.interest .col {
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    font-size: medium;
+    height: 380px;
+    width: 420px;
+    backdrop-filter: blur(-2px);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.interest .col:hover {
+    box-shadow: 1px 0px 10px 3px;
+}
+
+
+/* end  */
+
+.box {
+    display: flex;
+}
+
+.box-item {
+    width: 50%;
+    box-shadow: 0 1px 7px 0.5px #1a1a77;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.hero-container {
+    color: aliceblue;
+}
+
+#about .container {
+    margin: 8px;
+}
+
+#about .section-title {
+    box-shadow: 4px -1px 15px -6px;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    margin: 16px;
+    width: 105%;
+}
+
+.skills {
+    /* background-image: linear-gradient(to right, #fff1e0, #f9f8f7); */
+    padding: 10px;
+}
+
+.wrapper {
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.wrapper .static-text {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.wrapper .dynamic-txts {
+    margin-left: 15px;
+    height: 90px;
+    line-height: 90px;
+}
+
+.dynamic-txts li {
+    list-style: none;
+    font-size: 50px;
+    font-weight: bolder;
+    color: rgb(236, 13, 13);
+    /* color: midnightblue; */
+    top: 0;
+    animation: slide 6s steps(4) infinite;
+}
+
+@keyframes slide {
+    100% {
+        top: -360px;
+    }
+}
+
+.wrapper .dynamic-txts li span {
+    position: relative;
+}
+
+.dynamic-txts li span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(18 18 86);
+    border-left: 2px solid rgb(18 18 86);
+    animation: typing 1.5s steps(10) infinite;
+}
+
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+    0% {
+        left: 0%;
+        margin: 0 -35px 0 35px;
+    }
+}
+
+.demo {
+    background: #dad9d4;
+}
+
+.progress {
+    height: 40px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: none;
+    margin-top: 40px;
+    position: relative;
+}
+
+.progress .progress-title {
+    width: 20%;
+    height: 100%;
+    background: #fff;
+    border-radius: 100px 0 0 100px;
+    float: left;
+    margin: 0;
+    font-size: 15px;
+    color: #000;
+    line-height: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.progress .progress-title:after {
+    content: "";
+    border-left: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    z-index: 1;
+}
+
+.progress .progress-bar {
+    width: 80%;
+    background: #fff;
+    box-shadow: none;
+    position: relative;
+}
+
+.progress .progress-value {
+    height: 100%;
+    border-radius: 0 100px 100px 0;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+    color: #fff;
+    animation: animate-positive 2s;
+}
+
+.progress.red .progress-value {
+    background: #ec4251;
+}
+
+.progress.green .progress-value {
+    background: #73cd21;
+}
+
+.progress.blue .progress-value {
+    background: #2e9ce0;
+}
+
+.progress.yellow .progress-value {
+    background: #eea921;
+}
+
+@keyframes animate-positive {
+    0% {
+        width: 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .progress .progress-title {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width:600px) {
+    body {
+        font-size: small;
+    }
+    .img-fluid {
+        max-width: 90%;
+        height: auto;
+    }
+    #about .container {
+        margin: 0px;
+    }
+    #about .section-title {
+        box-shadow: 4px -1px 15px -6px;
+        border-radius: 20px;
+        padding: 10px;
+        display: block;
+        margin: 16px;
+        width: 92%;
+    }
+    .box {
+        display: block;
+    }
+    .box-item {
+        width: 100%;
+        box-shadow: 0 1px 7px 0.5px #1a1a77;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        padding: 10px;
+        margin-right: 10px;
+    }
+    .interest .col {
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        width: 300px;
+        border-radius: 5px;
+        backdrop-filter: blur(-2px);
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 50px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .interest .col:hover {
+        margin-top: 10px;
+        box-shadow: 1px 0px 10px 3px;
+        margin-bottom: 15px;
+    }
+}

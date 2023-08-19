@@ -1,0 +1,155 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+<!-- Contact Start -->
+<style>
+    body {
+    background-color: aliceblue;
+    background-size: contain;
+    color: orange;
+    color: black;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+    .box1 {
+        width: 400px;
+        margin-top: 30px;
+        display: block;
+        margin: auto;
+    }
+
+    form {
+        color: #7579ab;
+        font-size: x-large;
+    }
+
+#login_contact {
+    width: 150px;
+    display: block;
+    margin: auto;
+}
+
+.btnopt #click {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.btnopt #click:hover {
+    color: rgb(30, 228, 30);
+}
+
+.btnopt a {
+    text-decoration: none;
+}
+
+.btnopt a span {
+    color: black;
+}
+
+.btnopt a span:hover {
+    color: rgb(30, 228, 30);
+}
+
+footer {
+    margin-top: 6.4%;
+}
+
+.contact-form {
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 10px 10px 5px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.rape-box {
+    background-color: ivory;
+    width: 550px;
+    height: 40vh;
+    display: block;
+    margin: auto;
+    box-shadow: 0 0 31px 41px whitesmoke;
+    border-radius: 11px;
+}
+
+@media screen and (max-width:800px) {
+    body {
+        background-color: aliceblue;
+        background-position: unset;
+        background-size: cover;
+        background-repeat: round;
+    }
+    .contact-form {
+        width: 90%;
+        margin: auto;
+        position: relative;
+        top: 5em;
+    }
+    .box1 {
+            width: 300px;
+            margin-top: 30px;
+            display: block;
+            margin: auto;
+        }
+    input {
+        width: 60%;
+    }
+    .rape-box {
+        background-color: ivory;
+        width: 275px;
+        height: 40vh;
+        /* display: contents; */
+        display: block;
+        margin: auto;
+        box-shadow: 0 0 31px 41px whitesmoke;
+        border-radius: 11px;
+    }
+    .rape-box h1 {
+        padding: 10px;
+        font-size: xx-small;
+    }
+    label {
+        font-size: medium;
+    }
+    .rape-box a,
+    input {
+        font-size: x-small;
+    }
+    footer {
+        position: relative;
+        top: 24vh;
+    }
+}
+</style>
+
+<div class="rape-box">
+    <div class="container">
+        <div class="container">
+            <h1 class="display-4 mt-5 mb-3 text-center">Reset Password</h1>
+        </div>
+    </div>
+
+    <div class="box1">
+        <div class="container mb-2">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{form}}
+                    <p style="font-size: x-small;">Email must be register while you had signup?</p>
+                </div>
+                <input type="submit" class="btn btn-success" value="Submit">
+                <a href="{% url 'Home' %}" class="btn btn-danger">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+<!--scripting-->
+<script src="{% static 'js/authlogic/forgjs.js' %}"></script>
+<!--end-->
+
+
+<!-- Contact End -->
+{% endblock %}

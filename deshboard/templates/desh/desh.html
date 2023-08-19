@@ -1,0 +1,403 @@
+{% extends "base.html" %}{% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/desh.css' %}">
+
+<style>
+    body {
+        background-color: aliceblue;
+    }
+
+    .errorlist li {
+        list-style: none;
+    }
+
+    .box1 {
+        display: none;
+    }
+    .rap img{
+            width: 150px;
+    height: 20vh;
+    display: block;
+    margin: auto;
+    }
+    #title_main{
+        display:none;
+    }
+
+    #rapId{
+            margin-top: 5%;
+    }
+
+    .img-account-profile{
+        width:10%;
+    }
+    @media screen and (max-width:600px) {
+        table {
+            font-size: xx-small;
+        }
+        a i {
+            font-size: smaller;
+        }
+        #blgtable {
+            font-size: 5px;
+        }
+        #block {
+            display: none;
+        }
+        .box1 {
+            display: block;
+        }
+        .box1 h4 {
+            background-color: black;
+            padding: 4px;
+            color: aliceblue;
+        }
+        #title_main {
+            display:block;
+            background-color: white;
+            padding: 4px;
+            color: black;
+            ;
+        }
+        .common{
+            margin: 15px;
+        }
+        #table_p{
+            width: 90%;
+            display: block;
+            margin: auto;
+        }
+        #rapId{
+            margin-top: 20%;
+        }
+        .img-account-profile{
+            width:48%;
+    }
+    }
+</style>
+
+<!-- proflie section from here -->
+<div class="rap" id="rapId">
+    {% if messages %} {% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-2" role="alert" {% endif %}>
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %}
+
+
+<div class="alert alert-light" role="alert">
+<h4 class="text-center">Dashboard Profile</h4>
+</div>
+
+    {% if view_img %}
+    <img class="img-account-profile rounded-circle mb-2 " src="{{ view_img.file.url }}" alt="profile">
+    {% else %}
+    <img class="img-account-profile rounded-circle mb-2 " src="{% static 'image/profileicon.png' %}" alt="profile">
+    {% endif %}
+</div>
+<div class="common">
+    <table class="table text-center" id="table_p">
+        <thead class="table-dark">
+            <tr>
+                <!--<td>S.No.</td>-->
+                <td>Name</td>
+                <td>Username</td>
+                <td>Email Id</td>
+                <!-- <td>Blogs</td>  -->
+                <td>View</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--<td>{{user.id}}</td>-->
+                <td>{% if full_name %} {{full_name}} {% else %}Unknown{% endif %}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    {% if perms.auth.add_user %} <a href="{% url 'useradd' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-user-plus"></i></a>
+                    <a href="{% url 'userslist' %}" class="btn btn-outline-info mt-1"><i
+                            class="fa-sharp fa-solid fa-eye"></i></a>{% endif %}
+                    <a href="{% url 'profileview' user.id %}" class="btn btn-bd-accent mt-1"><img src="{% static 'image/view_profile.png' %}" alt="View-profile" style="width: 24px;"></a>
+                    <!-- <a href="{% url 'change-password' %}" class="btn btn-outline-dark mt-1"><img src="https://icons.veryicon.com/png/o/business/background-management-system/change-password-5.png" alt="" style="width:25px"></a> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr class="m-4">
+
+<!-- show course sections -->
+<p class="text-center fs-3 fw-bolder bg-white mx-4 my-4 text-dark" id="block">Show Information</p>
+<h4 id="title_main" class="mx-4 my-4 text-center fs-3 fw-bolder">Show Information</h4>
+{% if request.user.is_superuser %}
+<div class="common">
+    <table class="table w-100 text-center" id="table_p">
+        <thead class="table-dark">
+            <tr>
+                <td id="block">
+                    <div class="row">
+                        <div class="col">
+                            <h4>Blogs</h4>
+                        </div>
+                        <div class="col">
+                            <h4>Learn</h4>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="block">
+                    <div class="row">
+                        <div class="col-6">
+                            {% if perms.auth.add_user %} <a href="{% url 'Blogs-Add' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-plus"></i></a>{% endif %}
+                            <a href="{% url 'Blog' %}" class="btn btn-outline-dark mt-1"><i class="fas fa-home"></i></a>
+                        </div>
+                        <div class="col-6">
+                            {% if perms.auth.add_user %} <a href="{% url 'addlearn' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-plus"></i></a>{% endif %} {% comment %}
+                            <a href="{% url 'dashboard' %}" class="btn btn-outline-dark mt-1"><i
+                                    class="fa-regular fa-pen-to-square"></i></a>{% endcomment %}
+                            <a href="{% url 'Learn_platfrom' %}" class="btn btn-outline-dark mt-1"><i
+                                    class="fas fa-home"></i></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <div class="row">
+                        <div class="box1">
+                            <h4 class="text-center fs-3 fw-bolder">Blogs</h4>
+                            <div class="col">
+                                {% if perms.auth.add_user %} <a href="{% url 'Blogs-Add' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-plus"></i></a>{% endif %}
+                                <a href="{% url 'Blog' %}" class="btn btn-outline-dark mt-1"><i
+                                        class="fas fa-home"></i></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="m-4">
+                                {% for blg in BlogSh %}
+                                <div class="card bg-dark rounded-3 p-3 mt-3">
+                                    {% if blg.image != null %}
+                                    <img src="/{{blg.image}}" class="card-img-top" alt="Error" style="float: right; width:200px; display:block; margin:auto;"> {% else %}
+                                    <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" style="float: right; width:200px" alt="Error"> {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="text-white fw-bold"><b>{{blg.title}}</b></h5>
+                                        <p class="text-white">{{blg.discription | truncatechars:150}}</p>
+                                        <p><i class="fa-solid fa-user"></i> : {{blg.author}}</p>
+                                        <p class="text-white">{{p.date_time}}</p>
+                                        <a href="{% url 'Blogs-Edit' blg.id %}" class="btn btn-secondary"><i
+                                                class="fa-regular fa-pen-to-square"></i></a> {% if perms.blog.delete_blog %}
+                                        <a href="{% url 'Blogs-delete' blg.id %}" class="btn btn-outline-danger"><i
+                                                class="fa-sharp fa-solid fa-trash"></i></a> {% endif %}
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <p style="color: red;" class="text-center">No Blogs posts</p>
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'blogview' %}" class="btn btn-dark" style="margin: 5px;">More</a>
+                        </div>
+                        <div class="col">
+                            <div class="box1">
+                                <div class="col">
+                                    <h4 class="text-center fs-3 fw-bolder">Learn</h4>
+                                    {% if perms.auth.add_user %} <a href="{% url 'Blogs-Add' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-plus"></i></a>{% endif %}
+                                    <a href="{% url 'Blog' %}" class="btn btn-outline-dark mt-1"><i
+                                            class="fas fa-home"></i></a>
+                                </div>
+                            </div>
+                            <div class="row w-100">
+                                {% for c in allcurdata %}
+                                <div class="col mt-2">
+                                    <div class="card d-block m-auto" style="width: 20rem;">
+                                        {% if c.CourseImage != null %}
+                                        <img src="/media/{{c.CourseImage}}" class="card-img-top" alt="Error"> {% else %}
+                                        <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" alt="Error"> {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center"><b>{{c.title}}</b></h5>
+                                            <p class="card-text">{{c.description | truncatechars:120}}</p>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    View More
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    {% if c.web_link_learn != null%}
+                                                    <li><a class="dropdown-item" href="{{c.web_link_learn}}" target="_blank">Tutorial</a></li>
+                                                    {% endif %} {% if c.video_learn != null%}
+                                                    <li><a class="dropdown-item" href="#">Video</a></li>
+                                                    {% endif %}
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    {% if c.scription_learn != null%}
+                                                    <li><a class="dropdown-item" href="#">subscription</a></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <a href="{% url 'update' c.id %}" class="btn btn-secondary"><i
+                                                    class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="{% url 'delete' c.id %}" class="btn btn-outline-danger"><i
+                                                    class="fa-sharp fa-solid fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <p style="color: red;" class="text-center">Sorry, we couldn’t find any matches Course
+                                </p>{% comment %}for {{c.title}} {% endcomment %} {% endfor %}
+                            </div>
+                            <a href="{% url 'view' %}" class="btn btn-dark" style="margin: 5px;">More</a>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- this sections is for users only -->
+{% else %}
+<div class="box mb-2 bg-gradient mx-4 my-4">
+    <p class='text-center fs-3 fw-bolder bg-white my-4' style="color: #112bff">My Course</p>
+    <div class="row w-100">
+        {% for c in course %}
+        <div class="col mt-2">
+            <div class="card d-block m-auto" style="width: 20rem;">
+                {% if c.CourseImage != null %}
+                <img src="{{c.CourseImage.url}}" class="card-img-top h-25" alt="Error"> {% else %}
+                <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top h-25" alt="Error"> {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-center text-dark"><b>{{c.title}}</b></h5>
+                    <p class="card-text text-dark">{{c.description | truncatechars:120}}</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            View More
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% if c.web_link_learn != null%}
+                            <li><a class="dropdown-item" href="{{c.web_link_learn}}" target="_blank">Tutorial</a></li>
+                            {% endif %} {% if c.doc_link_learn != null%}
+                            <li><a class="dropdown-item" href="{{c.doc_link_learn}}" target="_blank">Org. Doc Tutorial</a></li>
+                            {% endif %} {% if c.video_learn != null%}
+                            <li><a class="dropdown-item" href="#">Video</a></li>
+                            {% endif %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            {% if c.scription_learn != null%}
+                            <li><a class="dropdown-item" href="#">subscription</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <i class="fa fa-star text-dark" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+                    <i class="fa fa-star text-dark" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+                    <i class="fa fa-star text-dark" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+                    <i class="fa fa-star text-dark" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p style="color: red;" class="text-center">Sorry, we couldn’t find any matches Course</p>{% comment %}for {{c.title}} {% endcomment %} {% endfor %}
+    </div>
+
+    <!-- paginatiion conecpt -->
+    <div class="common">
+        <nav aria-label="Page navigation example fs-5">
+            <ul class="pagination justify-content-center">
+                {% if course.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="/dashboard//?page={{course.previous_page_number}}">Previous</a>
+                </li>
+                {% endif %} {% for n in totalpagelist %}
+                <li class="page-item"><a class="page-link" href="/dashboard/?page={{n}}">{{n}}</a></li>
+                {% endfor %} {% if course.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="/dashboard/?page={{course.next_page_number}}">Next</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/dashboard/?page={{lastpage}}">Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <!-- end paginatiion conecpt -->
+</div>
+{% endif %}
+<!-- End show course sections -->
+
+<!-- Personl blog sections -->
+<div class="m-4">
+    <p class="text-center fs-3 fw-bolder bg-white text-dark">My Blogs</p>
+
+    <!-- start bloging create section -->
+    {% if request.user.is_superuser %} {% else %}
+    <div class="">
+        <table class="table w-100 text-center" id="table_p">
+            <thead class="table-dark">
+                <tr>
+                    <td>Blogs</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="{% url 'Blogs-Add' %}" class="btn btn-outline-primary mx-1 mt-1"><i
+                                class="fa-solid fa-plus"></i></a>
+                        <a href="{% url 'Blog' %}" class="btn btn-outline-dark mt-1"><i class="fas fa-home"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+<!-- end bloging create section -->
+
+{% if post %}
+<div class="common">
+    <table class="table w-100 text-center" id="blgtable">
+        <thead class="table-dark">
+            <tr>
+                <td scope="col" style="width: 6%;">Blog ID</td>
+                <td scope="col" style="width: 10%;">Title</td>
+                <td scope="col" style="width:50%">Description</td>
+                <td scope="col" style="width:13%">Photo</td>
+                <td scope="col" style="width: 8%;">Author</td>
+                <td scope="col" style="width: 13%;">Action</td>
+            </tr>
+        </thead>
+        {% for p in post %}
+        <tbody class="table-dark">
+            <tr>
+                <td>{{p.id}}</td>
+                <td>{{p.title}}</td>
+                <td>{{p.discription | truncatechars:150}} {% comment %} | truncatechars:200
+                    <a href="#">Read more</a> {% endcomment %}
+                </td>
+                <td>{% if p.image != null %}
+                    <img src="/{{p.image}}" class="card-img-top" alt="Error" style="width:100px"> {% else %}
+                    <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" alt="Error" style="width:100px"> {% endif %}
+                </td>
+                <td scope="col">{{p.author}}</td>
+                <td>
+                    <a href="{% url 'Blogs-Edit' p.id %}" class="btn btn-secondary"><i
+                            class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="{% url 'Blogs-delete' p.id %}" class="btn btn-outline-danger"><i
+                            class="fa-sharp fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+<!-- </div> -->
+<!-- End Personl blog sections -->
+
+
+<!-- Recents history sections -->
+<!-- <p class="text-center fs-3 fw-bolder bg-white mx-4 my-4 text-dark">Recents History</p> -->
+
+<!-- End Recents history sections -->
+{% endblock %}

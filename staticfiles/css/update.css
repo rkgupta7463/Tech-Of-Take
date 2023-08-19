@@ -1,0 +1,6 @@
+#control-image {
+    width: 15%;
+    height: 15vh;
+}
+
+@media screen and (max-width:800px) {}

@@ -1,0 +1,312 @@
+{% load static %}
+<!-- main nav navbars   -->
+{% comment %}
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <div class="box">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'Home' %}"><img src="{% static 'image/logow.jpeg' %}" alt="error" srcset="" width="80px" style="border-radius: 50%;"></a>
+            {% else %}
+            <a class="navbar-brand" href="{% url 'Home' %}"><img src="{% static 'image/logow.jpeg' %}" alt="error" srcset="" width="80px" style="border-radius: 50%;"></a>
+            {% endif %}
+        </div>
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse m-2" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'Home' %}active {% endif %} text-white" aria-current="page" href="{% url 'Home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'Blog' %}active {% endif %} text-white" href="{% url 'Blog' %}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'about-me' %}active {% endif %} text-white" href="{% url 'about-me' %}">Portfolio</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pages
+                        </a>
+                    <ul class="dropdown-menu">
+                        {% if user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'Learn_platfrom' %}">Learning</a></li>
+                        <li><a class="dropdown-item" href="{% url 'trending_IT' %}">Trending</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'contact-us' %}active {% endif %} text-white" href="{% url 'contact-us' %}">Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'signout' %}active {% endif %} text-white" href="{% url 'signout' %}">Singout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'signup' %}active {% endif %} text-white" href="{% url 'signup' %}">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'signin' %}active {% endif %} text-white" " href="{% url 'signin' %} ">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endcomment %}
+<!-- end main nav navbars -->
+
+<!--new nav bar-->
+
+<!--style sheet for new nav bar-->
+
+<style>
+    #navbar {
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 78px;
+        padding: 0 1em;
+        background-color: #2f3542;
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 0 25px;
+    }
+
+    #navbar .logo {
+        font-size: 1.25em;
+        line-height: 70px;
+        color: #fff;
+    }
+
+    #navbar .nav-menu {
+        position: absolute;
+        right: 1.5em;
+        top: 0;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    #navbar .nav-item {
+        display: inline-block;
+    }
+
+    #navbar .nav-item>a {
+        display: inline-block;
+        padding: 0 1em;
+        line-height: 70px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    #navbar .dropdown {
+        position: relative;
+    }
+
+    #navbar .dropdown a::after {
+        content: '';
+        display: inline-block;
+        margin-left: .5em;
+        vertical-align: middle;
+        border-top: .3em solid #fff;
+        border-right: .3em solid transparent;
+        border-left: .3em solid transparent;
+    }
+
+    #navbar .dropdown.show a::after {
+        transform: rotate(180deg);
+    }
+
+    #navbar .dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        padding: .5em 0;
+        margin-top: -.5em;
+        border: 1px solid rgba(0, 0, 0, .3);
+        border-radius: .5em;
+        background-color: #fff;
+    }
+
+    #navbar .dropdown.show .dropdown-menu {
+        display: block;
+    }
+
+    #navbar .dropdown-item {
+        display: block;
+        padding: 0 1.5em;
+        font-size: .875em;
+        color: gray;
+        line-height: 3;
+        text-decoration: none;
+    }
+
+    #navbar .btn-hamburger {
+        display: none;
+        position: absolute;
+        right: 1.5em;
+        top: 50%;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+        transform: translateY(-50%);
+    }
+
+    #navbar .btn-hamburger span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: #fff;
+        margin: 6px;
+        border-radius: 2px;
+        transition: .3s ease-in-out;
+    }
+
+    #navbar .btn-hamburger span:nth-child(4),
+    #navbar .btn-hamburger span:nth-child(5) {
+        position: absolute;
+        top: 10px;
+        opacity: .5;
+    }
+
+    #navbar .btn-hamburger span:nth-child(4) {
+        transform: rotate(45deg) scale(0);
+    }
+
+    #navbar .btn-hamburger span:nth-child(5) {
+        transform: rotate(-45deg) scale(0);
+    }
+
+    #navbar.opened .btn-hamburger span:nth-child(4) {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+    }
+
+    #navbar.opened .btn-hamburger span:nth-child(5) {
+        opacity: 1;
+        transform: rotate(-45deg) scale(1);
+    }
+
+    #navbar.opened .btn-hamburger span:nth-child(1),
+    #navbar.opened .btn-hamburger span:nth-child(2),
+    #navbar.opened .btn-hamburger span:nth-child(3) {
+        opacity: 0;
+    }
+
+    #navbar ul li a:hover {
+        background-color: black;
+        font-weight: bold;
+        border-radius: 0 16px;
+        margin: 3px;
+    }
+
+    #navbar .active {
+        background-color: black;
+        font-weight: bold;
+        border-radius: 0 16px;
+        margin: 3px;
+    }
+
+    @media screen and (max-width: 768px) {
+        #navbar .nav-menu {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 70px;
+            bottom: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            background-color: #363d4e;
+            transition: bottom .5s ease-in-out;
+            overflow: hidden;
+        }
+        #navbar.opened .nav-menu {
+            bottom: 0;
+        }
+        #navbar .nav-item>a {
+            display: block;
+        }
+        #navbar .dropdown-menu {
+            position: relative;
+            top: 0;
+            margin: 0 1em;
+        }
+        #navbar .btn-hamburger {
+            display: block;
+        }
+    }
+</style>
+
+<nav id="navbar">
+    <div class="logo">
+        <a class="navbar-brand" href="{% url 'Home' %}"><img src="{% static 'image/logow.png' %}" alt="error" srcset="" width="50px" style="border-radius: 50%;"></a>
+    </div>
+    <button type="button" class="btn-hamburger" data-action="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-menu">
+        <li class="nav-item {% if request.resolver_match.url_name == 'Home' %}active {% endif %}"><a href="{% url 'Home' %}">Home</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'about-me' %}active {% endif %}">
+            <a href="{% url 'about-me' %}">Portfolio</a>
+        </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'Blog' %}active {% endif %}"><a href="{% url 'Blog' %}">Blogs</a></li>
+        <li class="nav-item dropdown">
+            <a href="#" data-action="dropdown-toggle">Pages</a>
+            <div class="dropdown-menu">
+            {% if user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+                {% endif %}
+                <a class="dropdown-item" href="{% url 'Learn_platfrom' %} ">ELearning</a>
+                <a class="dropdown-item" href="{% url 'trending_IT' %} ">Trending</a>
+            </div>
+        </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'contact-us' %}active {% endif %}"><a href="{% url 'contact-us' %}">Contact Us</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a href="{% url 'signout' %}">Logout</a></li>
+        {% else %}
+        <li class="nav-item {% if request.resolver_match.url_name == 'signin' %}active {% endif %}"><a href="{% url 'signin' %}">Login</a></li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'signup' %}active {% endif %}"><a href="{% url 'signup' %}">Register</a></li>
+
+        {% endif %}
+    </ul>
+</nav>
+
+
+<!--scripts of new nav bar-->
+
+<script>
+    let nav = document.querySelector('nav');
+    let dropdown = nav.querySelector('.dropdown');
+    let dropdownToggle = nav.querySelector("[data-action='dropdown-toggle']");
+    let navToggle = nav.querySelector("[data-action='nav-toggle']");
+
+    dropdownToggle.addEventListener('click', () => {
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+        } else {
+            dropdown.classList.add('show');
+        }
+    })
+
+    navToggle.addEventListener('click', () => {
+        if (nav.classList.contains('opened')) {
+            nav.classList.remove('opened');
+        } else {
+            nav.classList.add('opened');
+        }
+    })
+</script>

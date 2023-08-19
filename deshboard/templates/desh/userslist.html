@@ -1,0 +1,102 @@
+{% extends "base.html" %}{% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/desh.css' %}">
+
+<style>
+    body {
+        background-color: aliceblue;
+    }
+        .rap img{
+            width: 150px;
+    height: 20vh;
+    display: block;
+    margin: auto;
+    }
+    @media screen and (max-width:600px) {
+        table {
+            font-size: xx-small;
+        }
+        a i {
+            font-size: smaller;
+        }
+    }
+</style>
+
+
+{% if messages %} {% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-2" role="alert" {% endif %}>
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %} {% endif %}
+
+<h4 class="text-center">Profile</h4>
+
+<!-- proflie section from here -->
+<div class="rap">
+    <img src="{% static 'image/profileicon.png' %}" alt="profile">
+</div>
+<div class="m-4">
+    <table class="table w-100 text-center" id="table_p">
+        <thead class="table-dark">
+            <tr>
+                <td>S.No.</td>
+                <td>Name</td>
+                <td>Username</td>
+                <td>Email Id</td>
+                <!-- <td>Blogs</td>  -->
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{% if full_name %} {{full_name}} {% else %}Unknown{% endif %}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    {% if perms.auth.add_user %} <a href="{% url 'useradd' %}" class="btn btn-outline-primary mx-1 mt-1"><i class="fa-solid fa-user-plus"></i></a>{% endif %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-dark mt-1"><i class="fas fa-home"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr class="m-4">
+
+<!-- show course sections -->
+<p class="text-center fs-3 fw-bolder bg-white mx-4 my-4 text-dark">User's List</p>
+<div class="m-4">
+    <table class="table w-100 text-center" id="table_p">
+        <thead class="table-dark">
+            <tr>
+                <td>S.No.</td>
+                <td>Name</td>
+                <td>Username</td>
+                <td>Email Id</td>
+                <!-- <td>Blogs</td>  -->
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.get_full_name}}</td>
+                <td>{{u.username}}</td>
+                <td>{{u.email}}</td>
+                <td>
+                    <a href="{% url 'usersproEdit' u.id %}" class="btn btn-outline-dark mt-1"><i class="fas fa-user-edit"></i></a>
+                    <!-- <a href="{% url 'change-password' %}" class="btn btn-outline-dark mt-1"><img src="https://icons.veryicon.com/png/o/business/background-management-system/change-password-5.png" alt="" style="width:25px"></a> -->
+                    <a href="{% url 'userdel' u.id %}" class="btn btn-outline-danger"><i class="fa-sharp fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Recents history sections -->
+<!-- <p class="text-center fs-3 fw-bolder bg-white mx-4 my-4 text-dark">Recents History</p> -->
+
+<!-- End Recents history sections -->
+{% endblock %}

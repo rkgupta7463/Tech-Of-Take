@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+<!-- Contact Start -->
+<style>
+    body {
+        background-color: grey;
+        color: antiquewhite;
+        width: 100%;
+    }
+    
+    .box1 {
+        width: 71%;
+        color: white;
+        padding: 40px;
+        display: block;
+        font-size: x-large;
+        margin: auto;
+        margin-top: 5em;
+    }
+    
+    @media screen and (max-width:600px) {
+        .box1 {
+            width: 71%;
+            display: block;
+            margin: auto;
+            margin-top: 6em;
+            font-size: x-small;
+        }
+    }
+</style>
+
+<div class="box1 h-100">
+    <h3>A Email has been send please check your email. </h3>
+    <p>If you don't receive an email , please make sure you've entered the email address you registrered with, and check your spam floder!</p>
+</div>
+
+
+{% endblock %}

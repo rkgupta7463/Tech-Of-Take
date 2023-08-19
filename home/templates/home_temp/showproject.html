@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load static %}
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/showmore.css' %}"> {% block content %}
+
+
+<!-- <div class="container"> -->
+<!-- <h2 style="text-align: center;" class="m-2" id="trending-blog">Project Details</h2>
+<div class="container">
+    <div class="item">
+        <div class="swiper-slide col">
+            <img src="/media/{{Proj.proj_image}}" class="contain-img w-25" alt="error">
+            <h2 style="text-align: center;">{{Proj.proj_title}}</h2>
+            <p>{{Proj.proj_descript}}</p>
+            <div class="box">
+                <p><a class="btn btn-secondary" href="{% url 'Home' %}">Back</a></p>
+                <p><a class="btn btn-secondary" href="{% url 'Home' %}">View More</a></p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="title text-center mt-5 text-black">
+    <h2 style="text-align: center; margin-top: 5.5rem;" id="trending-blog">Project Details</h2>
+    <p class="p text-black" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">Explore Once It.
+    </p>
+</div>
+<div class="container d-flex">
+    <div class="tet">
+        <h3>{{Proj.proj_title}}</h3>
+        <p>{{Proj.proj_descript}}
+        </p>
+    </div>
+    <img src="/{{Proj.proj_image}}" class="contain-img w-25" alt="error">
+</div>
+<div class="container d-flex mt-2">
+    <p><a class="btn btn-secondary" href="{% url 'Home' %}">Back</a></p>
+    <p><a class="btn btn-secondary mx-4" href="{{Proj.proj_link}}">Link</a></p>
+</div>
+
+<!-- <div class="container"> -->
+{% endblock %}

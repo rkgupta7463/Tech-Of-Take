@@ -1,0 +1,230 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!--superuser password: Rk7463 || user id : RishuGupta-->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!--start slider card views link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+
+<style>
+    #carouselExampleCaptions {
+        width: 1500px;
+    }
+
+    .project .col:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 20px 0 rgb(48 200 255 / 44%);
+    }
+
+    #sectionP p a:hover {
+        color: #c91c1c;
+        cursor: pointer;
+    }
+
+    #sectionP p a.active {
+        color: #491515;
+        font-weight: bolder;
+    }
+
+    .rape {
+        display: flex;
+    }
+
+    .card-body {
+        color: black
+    }
+
+    .card-body:hover {}
+
+    .card img:hover {
+        transform: scale(1.02)
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        background: darkgray;
+        color: aliceblue;
+    }
+    .main{
+         margin-left: 8%;
+    }
+    .carousel{
+        margin-top:5.5%;
+    }
+    #mrID{
+        height:45px;
+    }
+    #marueId{
+        display: block;
+        margin: auto;
+        font-family: auto;
+        margin-top: 5.12%;
+    }
+    #marueId marquee{
+            font-family: auto;
+        }
+
+    @media screen and (max-width:600px) {
+        #carouselExampleCaptions {
+            width: 100%;
+        }
+        #texts {
+            color: initial;
+            font-weight: bold;
+            font-size: x-small;
+            position: absolute;
+            top: 115px;
+        }
+       .rape {
+            display: block;
+        }
+        #sectionP {
+            font-size: 8px;
+        }
+        .main{
+            display: block;
+            margin: 4%;
+        }
+        #mrID{
+            height:30px;
+            }
+        #marueId{
+            display: block;
+            margin: auto;
+            margin-top: 19.12%;
+        }
+        .carousel{
+            margin-top:20.5%;
+    }
+    }
+</style>
+<!-- marquee -->
+<!--div class="marque" style="background-color: #b7b5b4;" id="marueId">
+    <marquee direction="left" scrollamount="14" id="mrID">
+        Welcome to Rishu Kumar Gupta || Career Blogging || Technology Portfolio
+    </marquee>
+<!--/div-->
+<!-- end marquee -->
+
+
+<!-- slide screen -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    {% if messages %} {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-1" role="alert" {% endif %}>
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %} {% endif %}
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static 'image/Picsart_23-02-03_16-11-39-098.jpg' %}" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="{% static 'image/Picsart_23-02-05_01-22-32-622.jpg' %}" alt="...">
+        </div>
+    </div>
+</div>
+
+<!--merque direction-->
+<!--{% if user.is_authenticated %}-->
+<!--<div class="marque" style="background-color: #b7b5b4;">-->
+<!--    <marquee class="marq m-2" direction="left" loop="true" style="font-family: auto;">-->
+<!--        Welcome {% if full_name %} {{full_name}} {% else %}Unknown{% endif %}-->
+<!--    </marquee>-->
+<!--</div>-->
+<!--{% else %}-->
+<!--<div class="marque" style="background-color: #b7b5b4;">-->
+<!--    <marquee class="marq m-2" direction="left" loop="true" style="font-family: auto;">-->
+<!--        Welcome Guest-->
+<!--    </marquee>-->
+<!--</div>-->
+<!--{% endif %}-->
+
+
+<!--feature of this-->
+<div class="feature">
+    <div class="container">
+        <!-- https://i.ytimg.com/vi/AOaHEgbDKro/maxresdefault.jpg -->
+        <div class="title text-center m-3">
+            <h3 class="h3 fw-bold fs-1">Feature's</h3>
+            <p class="p" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">We are providing this things, which mentions in below! Explore It.
+            </p>
+        </div>
+        <div class="row g-3 row-cols-3">
+            {% for FT in Feat %}
+            <div class="col mb-4">
+                <div class="icon text-center">
+                    <img src="/{{FT.FeaImage}}" alt="Error connection" class="img w-50 rounded-5">
+                </div>
+                <h2 class="text-center text-dark m-3">{{FT.FeaTitle}}</h2>
+                <p class="text-dark">{{FT.FeaDescript}}</p>
+                <p class="text-center info"><a href="{{FT.FeaWebLink}}" style="text-decoration: none;">View More
+                        »</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- least blogs  -->
+<div class="project">
+    <div class="container">
+        <!-- https://i.ytimg.com/vi/AOaHEgbDKro/maxresdefault.jpg -->
+        <div class="title text-center m-3">
+            <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Latest Blogs from our Blogs Posted</h3>
+            <p class="p text-dark" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">Once read these blogs</p>
+            <div class="row row-cols-3">
+                {% for blg in BlogSh %}
+                <div class="col mb-4 h-100 p-3">
+                    <div class="icon text-center">
+                        {% if blg.image != null %}
+                        <img src="/{{blg.image}}" class="card-img-top rounded-5" alt="Error" style="margin-bottom: 10%; height: 12vh;"> {% else %}
+                        <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" style="float: right; width:200px" alt="Error"> {% endif %}
+                    </div>
+                    <h3 class="fw-bold text-dark"><b>{{blg.title}}</b></h3>
+                    <p class="text-dark">{{blg.discription | truncatewords:30}}</p>
+                    <p class="text-dark"><i class="fa-solid fa-user"></i> : {{blg.author}}</p>
+                    <p class="text-dark">{{blg.date_time}}</p>
+                    <a href="{% url 'Details-Blogs' blg.id %}" class="btn btn-primary">View More</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- project discription -->
+{% include "home_temp/fliterapp.html" %}
+<!--end section -->
+<!--client feedback form-->
+{% include "home_temp/feedback.html" %}
+<!-- Testimonial Start -->
+<div class="clints_said">
+    <div class="title text-center m-5">
+        <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Testimonial</h3>
+        <p class="p text-white" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">Our Clients Say!
+        </p>
+    </div>
+    <div class="owl-carousel owl-theme">
+        {% for tdb in TDB %}
+        <div class="item">
+            <div class="swiper-slide col">
+                <h2 class="text-center m-3 ">{{tdb.cname}}</h2>
+                <h6 class="text-center m-3">{{tdb.ctitle}}</h6>
+                <p>{{tdb.cfeedback}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- <script src="{% static 'js' %}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/logic(dy).js' %}"></script>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% load static %}
+<!-- Remove the container if you want to extend the Footer to full width. -->
+
+<style>
+    #socialicons a:hover{
+        transform: scale(1.2);
+    }
+    #rkgupta{
+        color:white;
+    }
+    #rkgupta:hover{
+        color: cornsilk;
+    }
+    @media screen and (max-width:600px) {
+    #footerp{
+            font-size: xx-small;
+    }
+    }
+</style>
+
+<!--scripts of disable the Right click-->
+<script>
+
+    // Detect developer tools
+    function detectDevTools() {
+        var startTime = new Date();
+        debugger;
+        var endTime = new Date();
+
+        // Calculate time taken for debugging
+        var timeDiff = endTime - startTime;
+
+        // Display a warning if debugging tools are active
+        if (timeDiff > 100) { // You can adjust the threshold as needed
+            console.log("Warning: Developer tools detected. Your actions are being monitored.");
+        }
+    }
+
+    // Call the function on page load
+    detectDevTools();
+
+    // Disable right-click
+    window.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    // Disable text selection
+    window.addEventListener('selectstart', function (e) {
+        e.preventDefault();
+    });
+</script>
+<!-- Footer -->
+<script src="{% static 'js/fonticon.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<footer class="text-center text-lg-start text-white" style="background-color: #1d2f53;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Links -->
+        <section class="">
+            <!--Grid row-->
+            <div class="row">
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Service</h6>
+                    <p>
+                        <a class="text-white" href="{% url 'Blog' %}">Blogging</a>
+                    </p>
+                    <p>
+                        <a class="text-white" href="{% url 'Learn_platfrom' %}">Learning</a>
+                    </p>
+                    <p>
+                        <a class="text-white" href="{% url 'trending_IT' %}">Trending Tech.</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                    <p><i class="fas fa-home mr-3"></i> Vijayawada, India</p>
+                    <p><i class="fas fa-envelope mr-3"></i> rishukumargupta8409@gmail.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> + 91 7463 XXXX 82</p>
+                    <!-- <p><i class="fas fa-print mr-3"></i> + 91 7463 XXXX 82</p> -->
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3" id="socialicons">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="https://twitter.com/ActGupta/" role="button"><i class="fab fa-twitter"></i
+                ></a>
+
+                    <!-- Google -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="https://www.google.com/search?rlz=1C1RXQR_enIN1004IN1004&q=Gupta+Rishu+kumar&stick=H4sIAAAAAAAAAOOwesRoyi3w8sc9YSmdSWtOXmNU4-IJSC0qzs8LTk0sSs4QEuNic80rySypFOKR4uLiSMmoKMtJTi7gWcQq6F5aUJKoEJRZnFGqkF2am1gEAOsocnlOAAAA&sa=X&ved=2ahUKEwixnfGU5-L7AhXW8jgGHdt8Cf0QnJoFegQIBRAG&biw=1536&bih=714&dpr=1.25"
+                        target="_blank" role="button"><i class="fab fa-google"></i
+                ></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="https://www.linkedin.com/in/rishu-kumar-gupta-058737217/" role="button"><i class="fab fa-linkedin-in"></i
+                ></a>
+                    <!-- Github -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="https://github.com/rkgupta7463" role="button"><i class="fab fa-github"></i
+                ></a>
+                </div>
+            </div>
+            <!--Grid row-->
+        </section>
+        <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)" id="footerp">
+        Copy ©️2023All rights reserved |Developed by
+       <a class="" href="https://bit.ly/Rishukumargupta" target="_blank" id="rkgupta">Rishu Kumar Gupta || Career Blogging || Technology Portfolio</a
+          >
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  <!-- </div> -->
+  <!-- End of .container -->

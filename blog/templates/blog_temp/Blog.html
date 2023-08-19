@@ -1,0 +1,290 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!--google font link css-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap" rel="stylesheet">
+<!--end google css-->
+
+<!--slider css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<!--end css slider-->
+<style>
+    body {
+        background-size: contain;
+        color: aliceblue;
+        opacity: 2;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #carouselExampleCaptions {
+        height: 72vh;
+    }
+
+    .card:hover {
+        border: 1px solid wheat;
+        transform: scale(1.01);
+        box-shadow: 0 5px 20px 0 rgb(24 144 255 / 25%);
+    }
+    .createpost span {
+        margin-left: 58em;
+    }
+    #box-rape{
+        display:flex;
+    }
+
+    #carouselExampleCaptions{
+            margin-top: 5.1%;
+    }
+    @media screen and (max-width:600px) {
+        body {
+            background-size: cover;
+            color: aliceblue;
+            opacity: 2;
+        }
+        #carouselExampleCaptions {
+            height: 60%;
+        }
+        .createpost span {
+            margin-left: 0em;
+        }
+         .createpost a{
+            font-size: x-small;
+            margin-left: 10%;
+            margin-top: 8px;
+        }
+        #box-rape{
+            display:block;
+            font-size:xx-small;
+        }
+        #flex_box{
+            display:flex;
+        }
+        #flex_box a{
+            font-size: xx-small;
+            font-weight: bolder;
+        }
+    }
+</style>
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        {% for blg in BlDB %}
+        <div class="carousel-item {% if forloop.revcounter0 == 0 %}active{% endif %}">
+            <img src="/{{blg.image}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-md-block">
+                <h4 class="p-1">{{blg.title }}</h4>
+                <p class="p-1">{{blg.discription | truncatechars:50}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- sliding front blogings -->
+
+<!--All blogs sections -->
+<div class="title text-center m-5">
+    <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Blog's Details</h3>
+    <p class="p text-white" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">We are providing this things, which mentions in below! Explore It.
+    </p>
+</div>
+
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-bd-light mx-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
+<!--    Articles of Bloggings-->
+<!--  </button>-->
+
+<!-- Modal -->
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h1 class="modal-title fs-5 text-primary-emphasis" id="staticBackdropLabel">Articles of Bloggings</h1>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body text-primary-emphasis">-->
+<!--                <ol>-->
+<!--                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, sequi.</li>-->
+<!--                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, sequi.</li>-->
+<!--                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, sequi.</li>-->
+<!--                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, sequi.</li>-->
+<!--                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, sequi.</li>-->
+<!--                </ol>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Button trigger modal -->
+<div id="box-rape">
+    <div id="flex_box">
+    <span style="margin-left: 2em; margin-right:10px;margin-left: 2em; margin-right: 10px;margin-top: 4px;font-weight: bold;font-size: 21px;">Sort by:</span>
+    <a href="{% url 'BlogFil1' %}" class="btn btn-outline-info">Recent...</a>
+    <a href="{% url 'BlogFil2' %}" class="btn btn-outline-info mx-2">Previous...</a>
+</div>
+    <div class="createpost">
+        <span><a href="{% url 'Blogs-Add' %}" class="btn btn-bd-accent">Create Post</a></span>
+    </div>
+</div>
+<!--end section-->
+<div class="m-4">
+    {% for blg in BlogSh %}
+    <div class="card bg-dark rounded-3 p-3 mt-3">
+        {% if blg.image != null %}
+        <img src="/{{blg.image}}" class="card-img-top" alt="Error" style="float: right; width:200px"> {% else %}
+        <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" style="float: right; width:200px" alt="Error"> {% endif %}
+        <div class="card-body">
+            <h5 class="fw-bold"><b>{{blg.title}}</b></h5>
+            <p>{{blg.discription | truncatechars:300}}</p>
+            <p><i class="fa-solid fa-user"></i> : {{blg.author}}</p>
+            <p class="text-white">{{blg.date_time}}</p>
+            <a href="{{blg.web_link}}" class="btn btn-primary">View More</a>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color: red;" class="text-center">No Blogs posts</p>
+    {% endfor %}
+</div>
+{% comment %}
+<div class="col mt-2">
+    <div class="card d-block m-auto" style="width: 22rem;">
+        {% if blg.image != null %}
+        <img src="/media/{{blg.image}}" class="card-img-top" alt="Error" style="width: 49vh;"> {% else %}
+        <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" style="width: 45vh;" alt="Error"> {% endif %}
+        <div class="card-body">
+            <h5 class="card-title"><b>{{blg.title}}</b></h5>
+            <p class="card-text">{{blg.discription | truncatechars:200}}</p>
+            <p class="card-text"><i class="fa-solid fa-user"></i> : {{blg.author}}</p>
+            <a href="{% url 'Details-Blogs' blg.id %}" class="btn btn-primary">View More</a>
+            <!-- <i class="fa fa-comments"></i> -->
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+            <i class="fa fa-star" style="float: right;line-height: 38px;" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+{% endfor %} {% endcomment %}
+<!-- </div> -->
+<div class="m-4">
+    <nav aria-label="Page navigation example fs-5">
+        <ul class="pagination justify-content-center">
+            {% if BlogSh.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/Blogs/?page={{BlogSh.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %} {% for n in totalpagelist %}
+            <li class="page-item"><a class="page-link" href="/Blog/Blogs/?page={{n}}">{{n}}</a></li>
+            {% endfor %}
+            <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+            {% if BlogSh.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/Blogs/?page={{BlogSh.next_page_number}}">Next</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/Blogs/?page={{lastpage}}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<!-- end All blogs sections -->
+
+
+<!-- Main Body -->
+<section class="text-white" style="background-color: #605f5f;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-12 pb-4">
+                <h1>Comments</h1>
+                <div class="comment mt-4 text-justify float-left border-1 border-white">
+                    {% for u in CDB %}
+                    <div class="box">
+                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                        <h4>{{u.uname}}</h4>
+                        <span>{{u.created}}</span>
+                        <br>
+                        <p>{{u.Umessage}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if CDB %}
+                <div class="mt-4">
+                    <nav aria-label="Page navigation example fs-5">
+                        <ul class="pagination">
+                            {% if CDB.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="/Blogs/?page={{CDB.previous_page_number}}">Previous</a>
+                            </li>
+                            {% endif %} {% for n in totalpagelist %}
+                            <li class="page-item"><a class="page-link" href="/Blogs/?page={{n}}">{{n}}</a></li>
+                            {% endfor %} {% if CDB.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="/Blogs/?page={{CDB.next_page_number}}">Next</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="/Blogs/?page={{lastpage}}">Last</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                {% else %}
+                <h4>No Comments</h4>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                {% if messages %} {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show text-center m-2" role="alert" {% endif %}>
+                    <strong>{{message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %} {% endif %}
+                <form method="post" id="algin-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form}}
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="post" class="btn bg-warning mt-2 mb-2" value="Post Comment">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div class="container"> -->
+<!--js slider screen-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/logicblog/swiper.js' %}"></script>
+{% endblock %}

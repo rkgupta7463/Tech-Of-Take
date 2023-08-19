@@ -1,0 +1,24 @@
+body {
+    /* background-image: url('/home/static/img/BogusAccomplishedAssassinbug-max-1mb.gif'); */
+    background-color: grey;
+    background: aliceblue;
+}
+
+.contain-img {
+    float: right;
+}
+
+@media screen and (max-width: 600px) {
+    .image-item {
+        width: 300px;
+        height: 300px;
+    }
+    #contain {
+        display: block;
+    }
+    .contain-img {
+        align-items: center;
+        display: block;
+        margin: auto;
+    }
+}

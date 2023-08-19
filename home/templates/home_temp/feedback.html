@@ -1,0 +1,72 @@
+{% load static %}
+<style>
+    .row input {
+        background: #f4f4f4;
+        padding: 15px;
+    }
+
+    .row textarea {
+        background: #f4f4f4;
+        padding: 15px;
+    }
+    #fimg img:hover {
+        transform: scale(1.02);
+    }
+</style>
+<div class="content">
+
+    <div class="container">
+        <h3 class="h3 fw-bold fs-1 text-center mb-1" style="color: #9c9e9f;">Feedback</h3>
+        <!-- <hr> -->
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h3 class="heading mb-4" style="font-size: 2.9rem;font-weight: 900;">Let's talk about everything!</h3>
+                        <p style="color:rgb(160, 158, 158)">Through this form any one can tell your opinion regarding this website. <br>❤️Hearthly Welcome❤️</p>
+
+                        <p id="fimg">
+                            <img src="{% static 'image/undraw-contact.svg' %}" alt="Image " class="img-fluid "></p>
+                    </div>
+                    <div class="col-md-6 ">
+
+                        <form class="mb-5 " method="post">
+                            {% csrf_token %}
+                            <div class="row m-3 ">
+                                <div class="col-md-12 form-group ">
+                                    <input type="text " class="form-control " name="name" id="name " placeholder="Your name " required>
+                                </div>
+                            </div>
+                            <div class="row m-3 ">
+                                <div class="col-md-12 form-group ">
+                                    <input type="text " class="form-control " name="email" id="email " placeholder="Email " required>
+                                </div>
+                            </div>
+                            <div class="row m-3 ">
+                                <div class="col-md-12 form-group ">
+                                    <input type="text " class="form-control " name="subject" id="subject " placeholder="Subject " required>
+                                </div>
+                            </div>
+                            <div class="row m-3 ">
+                                <div class="col-md-12 form-group ">
+                                    <textarea class="form-control " name="message" id="message" cols="30 " rows="7 " placeholder="Write your message " required></textarea>
+                                </div>
+                            </div>
+                            <div class="row m-3 ">
+                                <div class="col-12 ">
+                                    <button type="submit" class="btn btn-dark rounded-0 py-2 px-4 rounded-1">Send Message </button>
+                                    <span class="submitting "></span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="form-message-warning mt-4 "></div>
+                        <div id="form-message-success ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

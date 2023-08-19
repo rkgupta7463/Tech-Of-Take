@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %}
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/detailblog.css' %}"> {% block content %}
+
+
+<style>
+    body {
+        background-color: aliceblue;
+        color: black;
+    }
+</style>
+
+
+<div class="title text-center m-5 text-black">
+    <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Blog's Details</h3>
+    <p class="p text-black" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">We are providing this things, which mentions in below! Explore It.
+    </p>
+</div>
+<div class="container d-flex">
+    <div class="tet">
+        <h3>{{BlogDB.title}}</h3>
+        <p>{{BlogDB.discription}}
+        </p>
+    </div>
+    {% if BlogDB.image != null %}
+    <img src="/{{BlogDB.image}}" class="card-img-top" alt="Error" style="width:200px"> {% else %}
+    <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" alt="Error" style="width:200px"> {% endif %}
+</div>
+<div class="container d-flex mt-2">
+    <p><a class="btn btn-secondary" href="{% url 'Blog' %}">Back</a></p>
+    <p><a class="btn btn-secondary mx-4" href="{{BlogDB.web_link}}" target="_blank">View More</a></p>
+</div>
+
+<hr class="m-3 opacity-75 border border-dark border-2 rounded-2"> {% endblock %}

@@ -1,0 +1,86 @@
+<!-- project discription -->
+<div class="project">
+    <div class="container">
+        <!-- https://i.ytimg.com/vi/AOaHEgbDKro/maxresdefault.jpg -->
+        <div class="title text-center m-3">
+            <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">My Latest Projects</h3>
+            <p class="p text-dark" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">Take a look at my recent work.
+            </p>
+        </div>
+    </div>
+    <!-- <center> -->
+    <div class="main">
+        <div class="d-flex" id="sectionP">
+                        <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'Home' %}active{% endif %}" href="{% url 'Home' %}" style="text-decoration: none; color:brown">All</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'crud' %}active{% endif %}" href="{% url 'crud' %}" style="text-decoration: none; color:brown">CRUD</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'blogsapp' %}active{% endif %}" href="{% url 'blogsapp' %}" style="text-decoration: none; color:brown">Blogging</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'weatherapp' %}active{% endif %}" href="{% url 'weatherapp' %}" style="text-decoration: none; color:brown">Weather</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'imageUp' %}active{% endif %}" href="{% url 'imageUp' %}" style="text-decoration: none; color:brown">Image uploader</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'car_pred' %}active{% endif %}" href="{% url 'car_pred' %}" style="text-decoration: none; color:brown">Data Science</a>
+            </p>
+            <p class="p-2">
+                <a class="{% if request.resolver_match.url_name == 'car_pred' %}active{% endif %}" href="{% url 'car_pred' %}" style="text-decoration: none; color:brown">Machine Learning</a>
+            </p>
+        </div>
+        <div class="rape">
+            {% if proj %} {% for pj in proj %}
+            <div class="card m-4" style="width: 18rem;">
+                <a href="{% url 'Proj_View' pj.id %}"><img src="/{{pj.proj_image}}" class="card-img-top" alt="..." style="height:30vh"></a>
+                <div class="card-body">
+                    <p style="font-weight:bold;">{{pj.proj_title}}</p>
+                    <!--<hr>-->
+                    <!--<p class="card-text">{{pj.proj_descript | truncatechars:200}}</p>-->
+                </div>
+            </div>
+            {% endfor %} {% elif cruddb %}
+            <div class="card m-4" style="width: 18rem;">
+                <a href="{% url 'Proj_View' cruddb.id %}"><img src="/{{cruddb.proj_image}}" class="card-img-top" alt="..." style="height:30vh"></a>
+                <div class="card-body">
+                    <p style="font-weight:bold;">{{cruddb.proj_title}}</p>
+                    <!--<hr>-->
+                    <!--<p class="card-text">{{cruddb.proj_descript | truncatechars:200}}</p>-->
+                </div>
+            </div>
+            {% elif blogs %}
+            <div class="card m-4" style="width: 18rem;">
+                <a href="{% url 'Proj_View' blogs.id %}"><img src="/{{blogs.proj_image}}" class="card-img-top" alt="..." style="height:30vh"></a>
+                <div class="card-body">
+                    <p style="font-weight:bold;">{{blogs.proj_title}}</p>
+                    <hr>
+                    <p class="card-text">{{blogs.proj_descript | truncatechars:200}}</p>
+                </div>
+            </div>
+            {% elif weathers %}
+            <div class="card m-4" style="width: 18rem;">
+                <a href="{% url 'Proj_View' weathers.id %}"><img src="/{{weathers.proj_image}}" class="card-img-top" alt="..." style="height:30vh"></a>
+                <div class="card-body">
+                    <p style="font-weight:bold;">{{weathers.proj_title}}</p>
+                    <!--<hr>-->
+                    <!--<p class="card-text">{{weathers.proj_descript | truncatechars:200}}</p>-->
+                </div>
+            </div>
+
+            {% elif car_pred %}
+            <div class="card m-4" style="width: 18rem;">
+                <a href="{% url 'Proj_View' car_pred.id %}"><img src="/{{car_pred.proj_image}}" class="card-img-top" alt="..." style="height:30vh"></a>
+                <div class="card-body">
+                    <p style="font-weight:bold;">{{car_pred.proj_title}}</p>
+                    <!--<hr>-->
+                    <!--<p class="card-text">{{weathers.proj_descript | truncatechars:200}}</p>-->
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>

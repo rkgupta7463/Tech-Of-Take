@@ -1,0 +1,137 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!--google font link css-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap" rel="stylesheet">
+<!--end google css-->
+
+<!--slider css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<!--end css slider-->
+<style>
+    body {
+        background-size: contain;
+        color: aliceblue;
+        opacity: 2;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #carouselExampleCaptions {
+        height: 72vh;
+    }
+
+    @media screen and (max-width:600px) {
+        body {
+            background-size: cover;
+            color: aliceblue;
+            opacity: 2;
+        }
+        #carouselExampleCaptions {
+            height: 60%;
+        }
+    }
+</style>
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        {% for blg in BlDB %}
+        <div class="carousel-item {% if forloop.revcounter0 == 0 %}active{% endif %}">
+            <img src="/{{blg.image}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-md-block">
+                <h4 class="p-1">{{blg.title }}</h4>
+                <p class="p-1">{{blg.discription | truncatechars:50}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- End sliding front blogings -->
+
+<!--All blogs sections -->
+<div class="title text-center m-5">
+    <h3 class="h3 fw-bold fs-1" style="color: #9c9e9f;">Blog's Details</h3>
+    <p class="p text-white" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">We are providing this things, which mentions in below! Explore It.
+    </p>
+</div>
+
+<!-- <div class="row text-black w-100"> -->
+<div class="m-4">
+    {% for blg in BlogSh %}
+    <div class="card bg-dark rounded-3 p-3 mt-3">
+        {% if blg.image != null %}
+        <img src="/{{blg.image}}" class="card-img-top" alt="Error" style="float: right; width:200px"> {% else %}
+        <img src="{% static 'image/noimage-1.png' %}" class="card-img-top" style="float: right; width:200px" alt="Error"> {% endif %}
+        <div class="card-body">
+            <h5 class="fw-bold"><b>{{blg.title}}</b></h5>
+            <p>{{blg.discription | truncatechars:300}}</p>
+            <p><i class="fa-solid fa-user"></i> : {{blg.author}}</p>
+            <p class="text-white">{{p.date_time}}</p>
+            <a href="{% url 'Details-Blogs' blg.id %}" class="btn btn-primary">View More</a>
+            <a href="{% url 'Blogs-Edit' blg.id %}" class="btn btn-secondary"><i
+                    class="fa-regular fa-pen-to-square"></i></a>
+            <a href="{% url 'Blogs-delete' blg.id %}" class="btn btn-outline-danger"><i
+                    class="fa-sharp fa-solid fa-trash"></i></a>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color: red;" class="text-center">No Blogs posts</p>
+    {% endfor %}
+</div>
+
+<!-- </div> -->
+<div class="m-4">
+    <nav aria-label="Page navigation example fs-5">
+        <ul class="pagination justify-content-center">
+            {% if BlogSh.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/Blogs/?page={{BlogSh.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %} {% for n in totalpagelist %}
+            <li class="page-item"><a class="page-link" href="/Blogs/?page={{n}}">{{n}}</a></li>
+            {% endfor %}
+            <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+            {% if BlogSh.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/Blogs/?page={{BlogSh.next_page_number}}">Next</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/Blogs/?page={{lastpage}}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<!-- end All blogs sections -->
+
+
+<!--js slider screen-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/swiper.js' %}"></script>
+{% endblock %}

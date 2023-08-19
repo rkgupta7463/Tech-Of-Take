@@ -1,0 +1,230 @@
+body {
+    /* background-image: url('https://thumbs.gfycat.com/LeanFlamboyantDuckbillplatypus-max-1mb.gif'); */
+    background-position: center;
+    background-size: auto;
+    color: black;
+    font-family: fangsong;
+    font-size: large;
+}
+
+marquee {
+    font-family: monospace;
+    font-size: xx-large;
+}
+
+.col {
+    width: 400px;
+    /* background-color: slategray; */
+    padding: 12px;
+    border-radius: 42px;
+    color: aliceblue;
+    margin: 10px;
+}
+
+.card-body {
+    color: aliceblue;
+    font-size: larger;
+}
+
+.carousel-item img {
+    height: 32rem;
+    background: #777;
+    color: white;
+    position: relative;
+}
+
+.image-item {
+    width: 500px;
+    height: 500px;
+}
+
+.title h3 {
+    text-align: center;
+    font-weight: bolder;
+}
+
+.title {
+    text-align: center;
+    margin: 40px;
+}
+
+
+/* feedback css */
+
+.icon img {
+    width: 100%;
+}
+
+.card-img-top {
+    margin: auto;
+    position: relative;
+}
+
+.card-img-top :hover {
+    background-color: grey;
+    color: white;
+}
+
+.card-title {
+    text-align: center;
+    margin: 20px;
+}
+
+#carouselExampleCaptions {
+    margin: auto;
+    display: table;
+}
+
+
+/* feature section css */
+
+.feature {
+    /* background-image: url('/home/static/img/feature/backgroundfeture.gif'); */
+    background-size: contain;
+    padding-bottom: 30px;
+}
+
+.feature .col {
+    box-shadow: 0 0px 3px 0.1px #5687f1;
+}
+
+.feature .col:hover {
+    box-shadow: 0 0px 30px 2px #5687f1;
+}
+
+
+/* end feature */
+
+
+/*project css section */
+
+.project {
+    /* background-image: url('https://i.pinimg.com/originals/62/39/4d/62394d753859943e6a1a36443ef78795.gif'); */
+    background-size: contain;
+    padding-bottom: 30px;
+}
+
+.project .col img {
+    float: right;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.project .col {
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    height: 345px;
+    border-radius: 5px;
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.project .col:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px 0 rgb(48 200 255 / 44%);
+}
+
+
+/*end section */
+
+
+/*this css is for feedback section*/
+
+.clints_said {
+    position: relative;
+    top: 5em;
+    padding: 10px;
+    margin-bottom: 5.2em;
+    /* background-image: url("/static/image/testimonials_background.jpg"); */
+    background-image: url("https://cdn.dribbble.com/users/616823/screenshots/3786967/breton-feedback-box.gif");
+    background-position: center;
+    background-size: cover;
+}
+
+.clints_said .col {
+    box-shadow: 0 15px 25px rgba(166, 23, 23, 0.2);
+    height: 320px;
+    left: 10%;
+    position: relative;
+    border-radius: 5px;
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 1.5em;
+    text-align: center;
+    width: 350px;
+    margin: 8px;
+}
+
+
+/*end feedback section*/
+
+.col {
+    transform: perspective(10x) translateX(60deg);
+}
+
+
+/* feedback end css  */
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: small;
+    }
+    marquee {
+        font-family: monospace;
+        font-size: medium;
+    }
+    .image-item {
+        width: 300px;
+        height: 300px;
+    }
+    #contain {
+        display: block;
+    }
+    .carousel-item img {
+        height: 15rem;
+        background: #777;
+        color: white;
+        position: relative;
+    }
+    .col {
+        width: 300px;
+        /* background-color: slategray; */
+        padding: 12px;
+        border-radius: 42px;
+        color: aliceblue;
+        margin: 10px;
+        display: block;
+        margin: auto;
+    }
+    .project .col {
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        height: 300px;
+        border-radius: 5px;
+        backdrop-filter: blur(14px);
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 50px;
+        text-align: center;
+        margin-bottom: 10px;
+        background-position: center;
+    }
+    .project .col h3:hover {
+        font-size: x-small;
+    }
+    .project {
+        /* background-image: url('https://i.pinimg.com/originals/62/39/4d/62394d753859943e6a1a36443ef78795.gif'); */
+        background-size: cover;
+        padding-bottom: 30px;
+    }
+    .project .col img {
+        float: right;
+        width: 100px;
+        margin-bottom: 20px;
+    }
+    .clints_said .col {
+        width: 75%;
+    }
+}

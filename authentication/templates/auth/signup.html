@@ -1,0 +1,125 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!--Customs css link-->
+<link rel="stylesheet" href="{% static 'css/customsignin.css' %}">
+
+
+<style>
+    body {
+        background-size: contain;
+        color: orange;
+        color: black;
+    }
+    #mainform{
+        margin-top:6%;
+    }
+
+    @media screen and (max-width:600px) {
+        #mainform{
+            margin-top:18%;
+        }
+    }
+</style>
+
+<!-- Contact Start -->
+
+<!-- start old models form  -->
+
+<section style="background-color: aliceblue; height:110vh;" class=" h-100">
+    <div class="container h-100" id="mainform">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px; margin: 10px;">
+                    {% if messages %} {% for message in messages %}
+                    <div class="alert alert-danger texgt-center my-2 mx-2" role="alert">
+                        {{message}}
+                    </div> {% endfor %}{% endif %}
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                <form method="POST" class="mx-1 mx-md-4">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="form3Example1c" class="form-control" name="fname" placeholder="Your First Name" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="form3Example1c" class="form-control" name="lname" placeholder="Your Last Name" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="email" id="form3Example3c" class="form-control" name="email" placeholder="Your Email" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="form3Example3c" class="form-control" name="username" placeholder="Your User name" required pattern="[a-z]{1,15}" title="Username should only contain lowercase letters. e.g. rishugupta"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw" style="margin-bottom: 16%;"></i>
+                                        <div class="form-outline flex-fill">
+                                            <input type="password" class="form-control" name="password1" id="myInput1" required="required" placeholder="Password" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[_,@])(?=.*\d).{8,16}" title="Must contain at least one symbol ethier underscore or @ one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+                                            <span class="d-flex">
+                                                <input type="checkbox" onclick="myFunction1()">
+                                                <p class="mt-3 mx-1">Show Password</p>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-5">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw" style="margin-bottom: 16%;"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" class="form-control" name="password2" id="myInput2" required="required" placeholder="Repeat your password" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[_,@])(?=.*\d).{8,16}" title="Must contain at least one symbol ethier underscore or @ one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+                                            <span class="d-flex">
+                                                <input type="checkbox" onclick="myFunction2()">
+                                                <p class="mt-3 mx-1">Show Password</p>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
+                                        <label class="form-check-label" for="form2Example3">
+                                            I agree with <a href="#!">Terms & conditions</a>
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" class="img-fluid" alt="Sample image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--scripting-->
+<script src="{% static 'js/signup.js' %}"></script>
+<!-- Contact End -->
+{% endblock %}

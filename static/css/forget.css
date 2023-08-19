@@ -1,0 +1,101 @@
+body {
+    background-color: aliceblue;
+    background-size: contain;
+    color: orange;
+    color: black;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#login_contact {
+    width: 150px;
+    display: block;
+    margin: auto;
+}
+
+.btnopt #click {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.btnopt #click:hover {
+    color: rgb(30, 228, 30);
+}
+
+.btnopt a {
+    text-decoration: none;
+}
+
+.btnopt a span {
+    color: black;
+}
+
+.btnopt a span:hover {
+    color: rgb(30, 228, 30);
+}
+
+footer {
+    margin-top: 6.4%;
+}
+
+.contact-form {
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 10px 10px 5px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.rape-box {
+    background-color: ivory;
+    width: 550px;
+    height: 40vh;
+    display: block;
+    margin: auto;
+    box-shadow: 0 0 31px 41px whitesmoke;
+    border-radius: 11px;
+}
+
+@media screen and (max-width:800px) {
+    body {
+        background-color: aliceblue;
+        background-position: unset;
+        background-size: cover;
+        background-repeat: round;
+    }
+    .contact-form {
+        width: 90%;
+        margin: auto;
+        position: relative;
+        top: 5em;
+    }
+    input {
+        width: 60%;
+    }
+    .rape-box {
+        background-color: ivory;
+        width: 275px;
+        height: 40vh;
+        /* display: contents; */
+        display: block;
+        margin: auto;
+        box-shadow: 0 0 31px 41px whitesmoke;
+        border-radius: 11px;
+    }
+    .rape-box h1 {
+        padding: 10px;
+        font-size: xx-small;
+    }
+    label {
+        font-size: medium;
+    }
+    .rape-box a,
+    input {
+        font-size: x-small;
+    }
+    footer {
+        position: relative;
+        top: 24vh;
+    }
+}

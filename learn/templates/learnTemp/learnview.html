@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<style>
+    .tag-title{
+        margin-top: 100px;
+    }
+</style>
+<!--Begin learning section-->
+<div class="tag-tilte">
+    <h2 class="head text-center" style="font-family: auto;">E-Learning with Right-Path</h2>
+
+    <form method="get" class="d-flex mt-3 my-5 mx-5" role="search">
+        <input class="form-control me-2" type="search" name="search-item" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+</div>
+<div class="row w-100">
+    {% for c in course %}
+    <div class="col mt-2">
+        <div class="card d-block m-auto" style="width: 20rem;">
+            {% if c.CourseImage != null %}
+            <img src="{{c.CourseImage.url}}" class="card-img-top" alt="Error"> {% else %}
+            <img src="https://jointedrail.com/wp-content/uploads/2020/11/noimage-1.png" class="card-img-top" alt="Error"> {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-center"><b>{{c.title}}</b></h5>
+                <p class="card-text">{{c.description | truncatechars:120}}</p>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        View More
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if c.web_link_learn != null%}
+                        <li><a class="dropdown-item" href="{{c.web_link_learn}}" target="_blank">Tutorial</a></li>
+                        {% endif %} {% if c.video_learn != null%}
+                        <li><a class="dropdown-item" href="#">Video</a></li>
+                        {% endif %}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% if c.scription_learn != null%}
+                        <li><a class="dropdown-item" href="#">subscription</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <a href="{% url 'update' c.id %}" class="btn btn-secondary"><i
+                        class="fa-regular fa-pen-to-square"></i></a>
+                <a href="{% url 'delete' c.id %}" class="btn btn-outline-danger"><i
+                        class="fa-sharp fa-solid fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color: red;" class="text-center">Sorry, we couldn’t find this {{courseName}} from Courses</p>{% endfor %}
+</div>
+
+<div class="m-4">
+    <nav aria-label="Page navigation example fs-5">
+        <ul class="pagination justify-content-center">
+            {% if course.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/course/view/?page={{course.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %} {% for n in totalpagelist %}
+            <li class="page-item"><a class="page-link" href="/course/view/?page={{n}}">{{n}}</a></li>
+            {% endfor %} {% if course.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/course/view/?page={{course.next_page_number}}">Next</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/course/view/?page={{lastpage}}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<!--end learning section-->
+
+{% endblock %}
